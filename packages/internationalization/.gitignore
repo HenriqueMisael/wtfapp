@@ -1,0 +1,8 @@
+node_modules
+dist/
+mock-api/sandbox
+mock-api/runtime-binary\.tar
+.favorites.json
+coverage
+
+\.vscode/

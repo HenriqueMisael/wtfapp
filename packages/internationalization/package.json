@@ -1,0 +1,19 @@
+{
+  "name": "internationalization",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "nelsonlpco",
+  "license": "MIT",
+  "scripts": {
+    "start": "./node_modules/.bin/babel src --out-dir dist --watch",
+    "build": "./node_modules/.bin/babel src --out-dir dist"
+  },
+  "dependencies": {
+    "i18n-js": "3.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/preset-env": "7.5.5"
+  }
+}
