@@ -10,10 +10,8 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Header />
-        <Routes />
-      </div>
+      <Header />
+      <Routes />
     </Router>
   );
 }
