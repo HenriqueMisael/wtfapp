@@ -11,4 +11,4 @@ export function* rootSagas() {
 }
 
 // Action creators and selectors
-export * as customerSelectors from './store/food/selectors';
+export * from './store/food';

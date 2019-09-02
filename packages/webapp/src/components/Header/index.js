@@ -1,9 +1,11 @@
 import React from 'react';
-import { Container } from './styled-wrappers';
-import { Text } from '../Text';
+import { Container, Overlay } from './styled-wrappers';
+import { HeaderText } from '../Text';
 
 export default () => (
-  <Container>
-    <Text>What's The Food</Text>
-  </Container>
+  <Overlay>
+    <Container>
+        <HeaderText>What's The Food</HeaderText>
+      </Container>
+  </Overlay>
 )

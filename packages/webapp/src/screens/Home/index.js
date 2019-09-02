@@ -1,9 +1,4 @@
 import React from 'react';
-import { Container } from './styled-wrapper';
-import { Text } from '../../components/Text';
+import Play from '../Play';
 
-export default () => (
-  <Container>
-    <Text>Teste</Text>
-  </Container>
-);
+export default () => <Play />;

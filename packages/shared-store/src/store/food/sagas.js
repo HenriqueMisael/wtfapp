@@ -1,16 +1,27 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { put, select, takeLatest } from 'redux-saga/effects';
 
 import { Creators, Types } from './duck';
-import { fetchOne } from './api';
+import { foodSelectors } from './index';
 
-function* setCurrentFood(id) {
-  const current = yield call(fetchOne, id);
-  yield put(Creators.foodSetCurrent(current));
+function* handleOption(selector, onEndAction) {
+  const next = yield select(selector);
+
+  if (next) {
+    yield put(Creators.foodSetCurrent(next));
+  } else if (onEndAction) {
+    yield put(onEndAction);
+  }
 }
 
-function* handleYesOption(food) {}
+function* handleYesOption() {
+  handleOption(foodSelectors.getCurrentYes, Creators.foodSetSuccess());
+}
+
+function* handleNoOption() {
+  handleOption(foodSelectors.getCurrentNo, Creators.foodSetFail());
+}
 
 export default [
-  takeLatest(Types.FOOD_SET_CURRENT_ASYNC, setCurrentFood),
-  takeLatest(Types.FOOD_HANDLE_YES_OPTION_ASYNC, handleYesOption)
+  takeLatest(Types.FOOD_HANDLE_YES_OPTION_ASYNC, handleYesOption),
+  takeLatest(Types.FOOD_HANDLE_NO_OPTION_ASYNC, handleNoOption)
 ];
