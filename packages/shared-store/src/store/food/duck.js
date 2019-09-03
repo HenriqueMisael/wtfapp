@@ -15,6 +15,8 @@ const success = state => setStage(state, Stages.SUCCESS);
 
 const fail = state => setStage(state, Stages.FAIL);
 
+const start = state => setStage(state, Stages.START);
+
 const addFoods = (state, { newFoods }) => ({
   ...state,
   foods: new Map([...state.foods, ...newFoods])
@@ -29,6 +31,7 @@ export const { Types, Creators } = createActions({
   foodSetPlay: [],
   foodSetSuccess: [],
   foodSetFail: [],
+  foodSetStart: [],
   foodAddFoods: ['newFoods'],
   foodResetAsync: []
 });
@@ -42,6 +45,7 @@ export default createReducer(
     [Types.FOOD_SET_PLAY]: play,
     [Types.FOOD_SET_SUCCESS]: success,
     [Types.FOOD_SET_FAIL]: fail,
+    [Types.FOOD_SET_START]: start,
     [Types.FOOD_ADD_FOODS]: addFoods
   }
 );

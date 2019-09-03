@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {HDivider} from '../../components/Divider';
-import Modal from '../../components/Modal';
+import Modal from '../../components/Modal/Default';
 import { CenteredText } from '../../components/Text';
 import { foodCreators, foodSelectors } from 'shared-store';
 import { ButtonsContainer } from './styled-wrappers';

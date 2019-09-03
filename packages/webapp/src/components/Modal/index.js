@@ -1,10 +1,2 @@
-import React from 'react';
-import { Container, Overlay } from './styled-wrapper';
-
-export default ({ children }) => {
-  return (
-    <Overlay>
-      <Container>{children}</Container>
-    </Overlay>
-  );
-};
+export { default as Modal } from './Default';
+export { default as MessageModal } from './Message';

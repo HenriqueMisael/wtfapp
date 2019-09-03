@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 
 export const Text = styled.p`
-  font-family: 'Andale Mono', sans-serif;
+  font-family: 'Didact Gothic Font', sans-serif;
   font-size: 14px;
   text-align: justify;
+  color: ${({ color = 'dimgrey' }) => color};
 `;
 
-export const HighlightedText = styled.div`
-  font-family: 'Andale Mono', sans-serif;
+export const HighlightedText = styled(Text)`
   font-size: 16px;
   font-weight: bold;
-  color: ${({ color = 'dimgrey' }) => color};
 `;
 
 export const CenteredText = styled(HighlightedText)`
