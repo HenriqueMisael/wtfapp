@@ -1,7 +1,7 @@
 import { put, select, takeLatest } from 'redux-saga/effects';
 
 import { Creators, Types } from './duck';
-import { foodSelectors } from './index';
+import { foodCreators, foodSelectors } from './index';
 
 function* handleOption(selector, onEndAction) {
   const next = yield select(selector);
@@ -14,14 +14,26 @@ function* handleOption(selector, onEndAction) {
 }
 
 function* handleYesOption() {
-  handleOption(foodSelectors.getCurrentYes, Creators.foodSetSuccess());
+  yield handleOption(foodSelectors.getCurrentYes, Creators.foodSetSuccess());
 }
 
 function* handleNoOption() {
-  handleOption(foodSelectors.getCurrentNo, Creators.foodSetFail());
+  yield handleOption(foodSelectors.getCurrentNo, Creators.foodSetFail());
+}
+
+function* startPlaying() {
+  const first = yield select(foodSelectors.getFirst);
+  yield put(foodCreators.foodSetCurrent(first));
+  yield put(foodCreators.foodSetPlay());
+}
+
+function* reset() {
+  yield put(Creators.foodClear());
 }
 
 export default [
   takeLatest(Types.FOOD_HANDLE_YES_OPTION_ASYNC, handleYesOption),
-  takeLatest(Types.FOOD_HANDLE_NO_OPTION_ASYNC, handleNoOption)
+  takeLatest(Types.FOOD_HANDLE_NO_OPTION_ASYNC, handleNoOption),
+  takeLatest(Types.FOOD_RESET_ASYNC, reset),
+  takeLatest(Types.FOOD_START_PLAYING, startPlaying)
 ];

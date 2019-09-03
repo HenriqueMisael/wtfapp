@@ -4,6 +4,6 @@ import { CenteredText } from '../../Text';
 
 export default ({ text, action }) => (
   <ButtonContainer onClick={action}>
-    <CenteredText>{text}</CenteredText>
+    <CenteredText color={'#F5F5F5'}>{text}</CenteredText>
   </ButtonContainer>
 );

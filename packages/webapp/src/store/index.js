@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import { environment, reducers, rootSagas } from 'shared-store';
+import { environment, Reducers, rootSagas } from 'shared-store';
 
 const NodeEnvDevelopment = 'development';
 const sagaMiddleware = createSagaMiddleware();
@@ -13,7 +13,7 @@ if (environment.nodeEnv.trim() === NodeEnvDevelopment) {
 }
 
 export default createStore(
-  reducers,
+  Reducers,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 

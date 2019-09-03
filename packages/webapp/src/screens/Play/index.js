@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Divider from '../../components/Divider';
+import {HDivider} from '../../components/Divider';
 import Modal from '../../components/Modal';
 import { CenteredText } from '../../components/Text';
 import { foodCreators, foodSelectors } from 'shared-store';
@@ -16,7 +16,7 @@ const Home = ({
 }) => (
   <Modal>
     <CenteredText>{question}</CenteredText>
-    <Divider />
+    <HDivider />
     <ButtonsContainer>
       <NoBorderButton text="Sim" action={foodHandleYesOptionAsync} />
       <NoBorderButton text="Não" action={foodHandleNoOptionAsync} />

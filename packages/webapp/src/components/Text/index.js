@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
-export const Text = styled.div`
+export const Text = styled.p`
+  font-family: 'Andale Mono', sans-serif;
+  font-size: 14px;
+  text-align: justify;
+`;
+
+export const HighlightedText = styled.div`
   font-family: 'Andale Mono', sans-serif;
   font-size: 16px;
   font-weight: bold;
+  color: ${({ color = 'dimgrey' }) => color};
 `;
 
-export const CenteredText = styled(Text)`
+export const CenteredText = styled(HighlightedText)`
   text-align: center;
-`;
-
-export const HeaderText = styled(Text)`
-  font-size: 20px;
-  font-variant: small-caps;
-  letter-spacing: 1em;
-  margin: auto;
 `;

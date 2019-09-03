@@ -7,9 +7,9 @@ const getCurrent = createSelector(
   state => state.current
 );
 
-const getAll = createSelector(
+export const getAll = createSelector(
   [getState],
-  state => state.all
+  state => state.foods
 );
 
 export const getCurrentYes = createSelector(
@@ -33,4 +33,19 @@ export const getCurrentNo = createSelector(
 export const getCurrentQuestion = createSelector(
   [getCurrent],
   current => `A comida que você pensou é ${current.name}?`
+);
+
+export const getStage = createSelector(
+  [getState],
+  state => state.stage
+);
+
+const getHead = createSelector(
+  [getState],
+  state => state.head
+);
+
+export const getFirst = createSelector(
+  [getAll, getHead],
+  (all, head) => all.get(head)
 );

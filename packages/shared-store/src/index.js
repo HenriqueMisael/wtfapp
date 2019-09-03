@@ -1,14 +1,15 @@
 import { all } from 'redux-saga/effects';
-//sagas
-import { default as foodSagas } from './store/food/sagas';
-// reducers
-export { default as reducers } from './store/duck';
+
+import { foodSagas } from './store/food';
+
+export { default as Reducers } from './store/duck';
 
 export { environment, initNetworkConfig } from './config';
+
+export { foodSelectors, foodCreators } from './store/food';
+
+export { Stages } from './store/food';
 
 export function* rootSagas() {
   yield all([...foodSagas]);
 }
-
-// Action creators and selectors
-export * from './store/food';
