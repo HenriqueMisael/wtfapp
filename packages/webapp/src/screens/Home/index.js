@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { foodCreators, foodSelectors, Stages } from 'shared-store';
 
 import { MessageModal } from '../../components/Modal';
-import { PlayScreen, SuccessScreen } from '../index';
+import { PlayScreen, SuccessScreen, FailScreen, LearningScreen } from '../index';
 
 export default () => {
   const dispatch = useDispatch();
@@ -12,6 +12,8 @@ export default () => {
 
   if (stage === Stages.PLAY) return <PlayScreen/>;
   if (stage === Stages.SUCCESS) return <SuccessScreen/>;
+  if (stage === Stages.FAIL) return <FailScreen/>;
+  if (stage === Stages.LEARNING) return <LearningScreen/>;
 
   return (
     <MessageModal
