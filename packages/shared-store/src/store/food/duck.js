@@ -5,9 +5,11 @@ import { initial, Stages } from './model';
 
 const setStage = (state, stage) => ({ ...state, stage });
 
-const clear = () => ({ ...initial });
+const clear = state => ({ ...initial, foods: state.foods });
 
-const setCurrent = (state, { current }) => ({ ...state, current });
+const setAnswer = (state, { answer }) => ({ ...state, answer });
+
+const setCurrent = (state, { current }) => ({ ...state, previousAnswer: state.answer, previous: state.current, current });
 
 const play = state => setStage(state, Stages.PLAY);
 
@@ -17,14 +19,17 @@ const fail = state => setStage(state, Stages.FAIL);
 
 const start = state => setStage(state, Stages.START);
 
+const learning = (state, { newFoodName }) => ({ ...setStage(state, Stages.LEARNING), learning: newFoodName });
+
 const addFoods = (state, { newFoods }) => ({
   ...state,
-  foods: new Map([...state.foods, ...newFoods])
+  foods: state.foods.merge(newFoods),
 });
 
 export const { Types, Creators } = createActions({
   foodClear: [],
   foodSetCurrent: ['current'],
+  foodSetAnswer: ['answer'],
   foodHandleYesOptionAsync: [],
   foodHandleNoOptionAsync: [],
   foodStartPlaying: [],
@@ -32,8 +37,10 @@ export const { Types, Creators } = createActions({
   foodSetSuccess: [],
   foodSetFail: [],
   foodSetStart: [],
+  foodSetLearning: ['newFoodName'],
   foodAddFoods: ['newFoods'],
-  foodResetAsync: []
+  foodResetAsync: [],
+  foodFinishLearningAsync: ['newFoodPeculiarity'],
 });
 
 export default createReducer(
@@ -41,11 +48,13 @@ export default createReducer(
   {
     [defaultypes.DEFAULT]: identity,
     [Types.FOOD_CLEAR]: clear,
+    [Types.FOOD_SET_ANSWER]: setAnswer,
     [Types.FOOD_SET_CURRENT]: setCurrent,
     [Types.FOOD_SET_PLAY]: play,
     [Types.FOOD_SET_SUCCESS]: success,
     [Types.FOOD_SET_FAIL]: fail,
     [Types.FOOD_SET_START]: start,
-    [Types.FOOD_ADD_FOODS]: addFoods
-  }
+    [Types.FOOD_SET_LEARNING]: learning,
+    [Types.FOOD_ADD_FOODS]: addFoods,
+  },
 );

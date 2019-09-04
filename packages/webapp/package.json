@@ -22,7 +22,9 @@
     "shared-store": "1.0.0",
     "styled-components": "4.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -36,8 +38,7 @@
     ]
   },
   "jest": {
-    "snapshotSerializers": [
-    ],
+    "snapshotSerializers": [],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/config/*.{js,jsx,ts,tsx}",

@@ -4,18 +4,23 @@ export const Stages = {
   START: 'START',
   PLAY: 'PLAY',
   SUCCESS: 'SUCCESS',
-  FAIL: 'FAIL'
+  FAIL: 'FAIL',
+  LEARNING: 'LEARNING',
 };
 
-const Food = (name, no, yes) => ({ name, yes, no });
+let nextID = 1;
+export const Food = (name, no, yes) => ({ ID: nextID++, name, yes, no });
 
 export const initial = Object.freeze({
   stage: Stages.START,
   current: undefined,
+  previous: undefined,
   head: 1,
   foods: Map([
-    [1, Food('lasanha', 2)],
-    [2, Food('macarrão', 3)],
-    [3, Food('brigadeiro')]
-  ])
+    [1, Food('bolo de cenoura', 2)],
+    [2, Food('lasanha à bolonhesa')],
+  ]),
+  learning: '',
+  answer: undefined,
+  previousAnswer: undefined,
 });

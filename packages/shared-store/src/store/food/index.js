@@ -1,5 +1,5 @@
-import * as Selectors from './selectors';
-import { default as Sagas } from './sagas';
+import Selectors from './selectors';
+import Sagas from './sagas';
 
 export { Creators as foodCreators } from './duck';
 
