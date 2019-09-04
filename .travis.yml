@@ -1,0 +1,18 @@
+language: node_js
+node_js: stable
+
+cache:
+  directories:
+    - node_modules
+
+before_deploy:
+  - "yarn bootstrap"
+  - "yarn build:web"
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: packages/webapp/build
+  on:
+    branch: master

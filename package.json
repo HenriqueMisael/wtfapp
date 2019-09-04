@@ -9,9 +9,9 @@
     "lint": "eslint 'packages/**/*.js'",
     "test:web": "cd packages/webapp && yarn test --runInBand --watchAll=false",
     "test:e2e:dev": "yarn build && cd packages/webapp && concurrently -kill-others \"yarn start\" \"yarn test:e2e\" ",
-    "test:webcov": "cd packages/webapp && yarn test --runInBand --coverage --watchAll=false",
+    "test:webcov": "cd packages/webapp && yarn test --runInBand --coverage --watchAll=false --passWithNoTests",
     "test:shared": "cd packages/shared-store && yarn test --runInBand",
-    "test": "yarn test:webcov && yarn test:shared",
+    "test": "yarn test:webcov",
     "test:e2e": "yarn build && cd packages/webapp && yarn build &&  concurrently -kill-others \"serve ./build -l 3000\" \"yarn test:e2e\" ",
     "start": "cd packages/webapp && yarn start",
     "clean:root": "rm -rf node_modules",
@@ -21,6 +21,7 @@
     "clean": "yarn clean:root && yarn clean:web && yarn clean:internationalization && yarn clean:store",
     "build:internationalization": "cd packages/internationalization && yarn build",
     "build:shared-store": "cd packages/shared-store && yarn build",
+    "build:web": "cd packages/webapp && yarn build",
     "build": "yarn build:internationalization && yarn build:shared-store",
     "watch:internationalization": "cd packages/internationalization && yarn build --watch",
     "watch:shared-store": "cd packages/shared-store && yarn build --watch",
@@ -39,6 +40,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.14.3",
-    "lerna": "3.16.4"
+    "lerna": "3.16.4",
+    "react-scripts": "^3.1.1"
   }
 }
