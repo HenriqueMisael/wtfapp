@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn install && react-scripts build",
     "test": "react-scripts test",
     "test:e2e": "./node_modules/.bin/cypress open",
     "eject": "react-scripts eject"

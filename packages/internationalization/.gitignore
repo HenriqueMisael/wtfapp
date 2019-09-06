@@ -6,3 +6,4 @@ mock-api/runtime-binary\.tar
 coverage
 
 \.vscode/
+package-lock.json
