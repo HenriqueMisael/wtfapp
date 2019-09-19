@@ -1,4 +1,4 @@
-import { createSelector } from '../../util/selectors';
+import { createSelector } from '../util/selectors';
 
 const getState = globalState => globalState.food;
 

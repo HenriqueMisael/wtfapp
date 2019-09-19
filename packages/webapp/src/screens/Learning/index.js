@@ -2,7 +2,7 @@ import React from 'react';
 
 import { InputModal } from '../../components/Modal';
 import { useSelector } from 'react-redux';
-import { foodCreators, foodSelectors } from 'shared-store/src/store/food';
+import { foodCreators, foodSelectors } from 'shared-store';
 
 export default () => {
   const newFoodName = useSelector(foodSelectors.getLearningFood);
