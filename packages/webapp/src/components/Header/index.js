@@ -3,11 +3,11 @@ import { ButtonContainer, Container, HeaderText, Overlay } from './styled-wrappe
 import { Button } from '../buttons';
 import { useDispatch, useSelector } from 'react-redux';
 import { VDivider } from '../Divider';
-import { foodCreators, foodSelectors } from 'shared-store';
+import { apiCreators, apiSelectors } from 'shared-store/src/api';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const online = useSelector(foodSelectors.isOnline);
+  const online = useSelector(apiSelectors.isOnline);
 
   return (
     <Overlay>
@@ -16,10 +16,10 @@ const Header = () => {
         <VDivider />
         <ButtonContainer>
           {online && (
-            <Button background={'#44AA44'} text={'Online'} action={() => dispatch(foodCreators.foodSetOfflineAsync())} />
+            <Button background={'#44AA44'} text={'Online'} action={() => dispatch(apiCreators.apiSetOfflineAsync())} />
           )}
           {!online && (
-            <Button background={'#AA4444'} text={'Offline'} action={() => dispatch(foodCreators.foodSetOnlineAsync())} />
+            <Button background={'#AA4444'} text={'Offline'} action={() => dispatch(apiCreators.apiSetOnlineAsync())} />
           )}
         </ButtonContainer>
       </Container>

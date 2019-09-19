@@ -35,22 +35,18 @@ const setOnline = (state, { online }) => ({ ...state, online });
 
 export const { Types, Creators } = createActions({
   foodClear: [],
-  foodSetCurrent: ['current'],
   foodSetAnswer: ['answer'],
-  foodHandleYesOptionAsync: [],
-  foodHandleNoOptionAsync: [],
-  foodStartPlaying: [],
+  foodSetCurrent: ['current'],
   foodSetPlay: [],
   foodSetSuccess: [],
   foodSetFail: [],
   foodSetStart: [],
   foodSetLearning: ['newFoodName'],
   foodAddFoods: ['newFoods'],
-  foodSetOnline: ['online'],
-  foodResetAsync: [],
+  foodStartPlaying: [],
+  foodHandleYesOptionAsync: [],
+  foodHandleNoOptionAsync: [],
   foodFinishLearningAsync: ['newFoodPeculiarity'],
-  foodSetOnlineAsync: [],
-  foodSetOfflineAsync: [],
 });
 
 export default createReducer(
@@ -66,6 +62,5 @@ export default createReducer(
     [Types.FOOD_SET_START]: start,
     [Types.FOOD_SET_LEARNING]: learning,
     [Types.FOOD_ADD_FOODS]: addFoods,
-    [Types.FOOD_SET_ONLINE]: setOnline,
   },
 );
