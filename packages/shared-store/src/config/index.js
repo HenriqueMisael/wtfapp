@@ -20,7 +20,7 @@ export const environment = {
   resetPasswordUrl: process.env.RESET_PASSWORD_URL,
   schedulerEnabled: process.env.SCHEDULER_ENABLED === 'true',
   ssoOpenIdConnectUrl: process.env.SSO_OPEN_ID_CONNECT_URL,
-  realm: process.env.REALM
+  realm: process.env.REALM,
 };
 
 export const initNetworkConfig = () => {

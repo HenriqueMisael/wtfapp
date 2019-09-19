@@ -6,7 +6,6 @@ import { foodCreators } from 'shared-store/src/store/food';
 import { MessageModal } from '../../components/Modal';
 
 export default () => {
-
   const dispatch = useDispatch();
 
   return (
@@ -16,4 +15,4 @@ export default () => {
       confirmationAction={() => dispatch(foodCreators.foodSetStart())}
     />
   );
-}
+};

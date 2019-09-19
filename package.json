@@ -13,7 +13,7 @@
     "test:shared": "cd packages/shared-store && yarn test --runInBand",
     "test": "yarn test:webcov",
     "test:e2e": "yarn build && cd packages/webapp && yarn build &&  concurrently -kill-others \"serve ./build -l 3000\" \"yarn test:e2e\" ",
-    "start": "cd packages/webapp && yarn start",
+    "run:web": "cd packages/webapp && yarn start",
     "clean:root": "rm -rf node_modules",
     "clean:web": "cd packages/webapp && rm -rf node_modules",
     "clean:internationalization": "cd packages/internationalization && rm -rf node_modules && rm -rf dist",

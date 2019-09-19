@@ -4,4 +4,4 @@ import food from './food/duck';
 
 export default combineReducers({
   food,
-})
+});

@@ -5,8 +5,7 @@ import { ButtonContainer } from './styled-wrappers';
 export default ({ action }) => {
   return (
     <ButtonContainer onClick={action}>
-      <Icon width='24' height='24'/>
+      <Icon width="24" height="24" />
     </ButtonContainer>
   );
-}
-
+};

@@ -6,7 +6,9 @@ import { HDivider } from '../../Divider';
 export default ({ children, messages }) => (
   <Modal>
     {messages.map((message, index) => (
-      <Text key={index} color={'#333333'}>{message}</Text>
+      <Text key={index} color={'#333333'}>
+        {message}
+      </Text>
     ))}
     <HDivider />
     {children}

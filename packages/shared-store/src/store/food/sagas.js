@@ -31,12 +31,7 @@ function* startPlaying() {
   yield put(foodCreators.foodSetPlay());
 }
 
-function* reset() {
-  yield put(Creators.foodClear());
-}
-
 function* learn({ newFoodPeculiarity }) {
-
   const [previousAnswer, newFoodName, current, previous] = yield all([
     select(foodSelectors.getPreviousAnswer),
     select(foodSelectors.getLearningFood),
@@ -46,10 +41,8 @@ function* learn({ newFoodPeculiarity }) {
 
   const newFood = Food(newFoodName);
   const newPeculiarity = Food(newFoodPeculiarity, current.ID, newFood.ID);
-  if (previousAnswer)
-    previous.yes = newPeculiarity.ID;
-  else
-    previous.no = newPeculiarity.ID;
+  if (previousAnswer) previous.yes = newPeculiarity.ID;
+  else previous.no = newPeculiarity.ID;
 
   const foodsChanges = Map([
     [previous.ID, previous],
@@ -61,10 +54,18 @@ function* learn({ newFoodPeculiarity }) {
   yield all([put(Creators.foodAddFoods(foodsChanges)), put(Creators.foodClear())]);
 }
 
+function* setOnline() {
+  yield put(Creators.foodSetOnline(true));
+}
+function* setOffline() {
+  yield put(Creators.foodSetOnline(false));
+}
+
 export default [
   takeLatest(Types.FOOD_HANDLE_YES_OPTION_ASYNC, handleYesOption),
   takeLatest(Types.FOOD_HANDLE_NO_OPTION_ASYNC, handleNoOption),
-  takeLatest(Types.FOOD_RESET_ASYNC, reset),
   takeLatest(Types.FOOD_START_PLAYING, startPlaying),
   takeLatest(Types.FOOD_FINISH_LEARNING_ASYNC, learn),
+  takeLatest(Types.FOOD_SET_ONLINE_ASYNC, setOnline),
+  takeLatest(Types.FOOD_SET_OFFLINE_ASYNC, setOffline),
 ];
