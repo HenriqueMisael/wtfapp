@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { foodCreators } from 'shared-store/src/store/food';
+import { foodCreators } from 'shared-store';
 
 import { InputModal } from '../../components/Modal';
 

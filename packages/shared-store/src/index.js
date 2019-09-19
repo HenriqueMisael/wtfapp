@@ -1,14 +1,18 @@
 import { all } from 'redux-saga/effects';
 
-import { foodSagas } from './store/food';
-
-export { default as Reducers } from './store/duck';
+import { foodSagas } from './food';
+import { combineReducers } from 'redux';
+import food from './food/duck';
 
 export { environment, initNetworkConfig } from './config';
 
-export { foodSelectors, foodCreators } from './store/food';
+export { foodSelectors, foodCreators } from './food';
 
-export { Stages } from './store/food';
+export { Stages } from './food';
+
+export const Reducers = combineReducers({
+  food,
+});
 
 export function* rootSagas() {
   yield all([...foodSagas]);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { foodCreators } from 'shared-store/src/store/food';
+import { foodCreators } from 'shared-store';
 
 import { MessageModal } from '../../components/Modal';
 
