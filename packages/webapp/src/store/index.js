@@ -12,9 +12,6 @@ if (environment.nodeEnv.trim() === NodeEnvDevelopment) {
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 }
 
-export default createStore(
-  Reducers,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
-);
+export default createStore(Reducers, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(rootSagas);

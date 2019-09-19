@@ -31,7 +31,6 @@ export const number = (a, b) => {
  * @param {string} b
  */
 export const string = (a, b) => {
-
   if (typeof a !== 'string') throw Error('Argument `a` is not a string');
   if (typeof b !== 'string') throw Error('Argument `b` is not a string');
 
@@ -42,9 +41,8 @@ export const string = (a, b) => {
   } else if (a > b) {
     difference = 1;
   } else {
-    difference = -1
+    difference = -1;
   }
 
   return difference;
 };
-

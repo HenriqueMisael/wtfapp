@@ -8,8 +8,8 @@ export const Input = styled.input`
   border: none;
   font-size: larger;
   width: -webkit-fill-available;
-    
-  &:focus{
+
+  &:focus {
     outline: none;
   }
 `;

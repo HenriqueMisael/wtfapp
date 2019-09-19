@@ -16,11 +16,9 @@ export const initial = Object.freeze({
   current: undefined,
   previous: undefined,
   head: 1,
-  foods: Map([
-    [1, Food('bolo de cenoura', 2)],
-    [2, Food('lasanha à bolonhesa')],
-  ]),
+  foods: Map([[1, Food('bolo de cenoura', 2)], [2, Food('lasanha à bolonhesa')]]),
   learning: '',
   answer: undefined,
   previousAnswer: undefined,
+  online: false
 });

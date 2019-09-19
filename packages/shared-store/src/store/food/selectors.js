@@ -75,6 +75,11 @@ const getLearningFood = createSelector(
   state => state.learning,
 );
 
+const isOnline = createSelector(
+  [getState],
+  state => state.online
+)
+
 export default Object.freeze({
   getAll,
   getPrevious,
@@ -88,4 +93,5 @@ export default Object.freeze({
   getStage,
   getFirst,
   getLearningFood,
+  isOnline
 });

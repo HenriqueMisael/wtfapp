@@ -9,7 +9,12 @@ const clear = state => ({ ...initial, foods: state.foods });
 
 const setAnswer = (state, { answer }) => ({ ...state, answer });
 
-const setCurrent = (state, { current }) => ({ ...state, previousAnswer: state.answer, previous: state.current, current });
+const setCurrent = (state, { current }) => ({
+  ...state,
+  previousAnswer: state.answer,
+  previous: state.current,
+  current,
+});
 
 const play = state => setStage(state, Stages.PLAY);
 
@@ -26,6 +31,8 @@ const addFoods = (state, { newFoods }) => ({
   foods: state.foods.merge(newFoods),
 });
 
+const setOnline = (state, { online }) => ({ ...state, online });
+
 export const { Types, Creators } = createActions({
   foodClear: [],
   foodSetCurrent: ['current'],
@@ -39,8 +46,11 @@ export const { Types, Creators } = createActions({
   foodSetStart: [],
   foodSetLearning: ['newFoodName'],
   foodAddFoods: ['newFoods'],
+  foodSetOnline: ['online'],
   foodResetAsync: [],
   foodFinishLearningAsync: ['newFoodPeculiarity'],
+  foodSetOnlineAsync: [],
+  foodSetOfflineAsync: [],
 });
 
 export default createReducer(
@@ -56,5 +66,6 @@ export default createReducer(
     [Types.FOOD_SET_START]: start,
     [Types.FOOD_SET_LEARNING]: learning,
     [Types.FOOD_ADD_FOODS]: addFoods,
+    [Types.FOOD_SET_ONLINE]: setOnline,
   },
 );
