@@ -54,18 +54,9 @@ function* learn({ newFoodPeculiarity }) {
   yield all([put(Creators.foodAddFoods(foodsChanges)), put(Creators.foodClear())]);
 }
 
-function* setOnline() {
-  yield put(Creators.foodSetOnline(true));
-}
-function* setOffline() {
-  yield put(Creators.foodSetOnline(false));
-}
-
 export default [
   takeLatest(Types.FOOD_HANDLE_YES_OPTION_ASYNC, handleYesOption),
   takeLatest(Types.FOOD_HANDLE_NO_OPTION_ASYNC, handleNoOption),
   takeLatest(Types.FOOD_START_PLAYING, startPlaying),
   takeLatest(Types.FOOD_FINISH_LEARNING_ASYNC, learn),
-  takeLatest(Types.FOOD_SET_ONLINE_ASYNC, setOnline),
-  takeLatest(Types.FOOD_SET_OFFLINE_ASYNC, setOffline),
 ];
