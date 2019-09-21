@@ -5,7 +5,9 @@ import { initial, Stages } from './model';
 
 const setStage = (state, stage) => ({ ...state, stage });
 
-const clear = state => ({ ...initial, foods: state.foods });
+const clear = () => ({ ...initial });
+
+const init = state => ({ ...initial, foods: state.foods });
 
 const setAnswer = (state, { answer }) => ({ ...state, answer });
 
@@ -24,7 +26,10 @@ const fail = state => setStage(state, Stages.FAIL);
 
 const start = state => setStage(state, Stages.START);
 
-const learning = (state, { newFoodName }) => ({ ...setStage(state, Stages.LEARNING), learning: newFoodName });
+const learning = (state, { newFoodName }) => ({
+  ...setStage(state, Stages.LEARNING),
+  learning: newFoodName,
+});
 
 const addFoods = (state, { newFoods }) => ({
   ...state,
@@ -33,8 +38,11 @@ const addFoods = (state, { newFoods }) => ({
 
 const setOnline = (state, { online }) => ({ ...state, online });
 
+const add = (state, { food }) => ({ ...state, foods: state.foods.set(food.id, food) });
+
 export const { Types, Creators } = createActions({
   foodClear: [],
+  foodInit: [],
   foodSetAnswer: ['answer'],
   foodSetCurrent: ['current'],
   foodSetPlay: [],
@@ -43,6 +51,7 @@ export const { Types, Creators } = createActions({
   foodSetStart: [],
   foodSetLearning: ['newFoodName'],
   foodAddFoods: ['newFoods'],
+  foodAdd: ['food'],
   foodStartPlaying: [],
   foodHandleYesOptionAsync: [],
   foodHandleNoOptionAsync: [],
@@ -54,6 +63,7 @@ export default createReducer(
   {
     [defaultypes.DEFAULT]: identity,
     [Types.FOOD_CLEAR]: clear,
+    [Types.FOOD_INIT]: init,
     [Types.FOOD_SET_ANSWER]: setAnswer,
     [Types.FOOD_SET_CURRENT]: setCurrent,
     [Types.FOOD_SET_PLAY]: play,
@@ -62,5 +72,6 @@ export default createReducer(
     [Types.FOOD_SET_START]: start,
     [Types.FOOD_SET_LEARNING]: learning,
     [Types.FOOD_ADD_FOODS]: addFoods,
+    [Types.FOOD_ADD]: add,
   },
 );

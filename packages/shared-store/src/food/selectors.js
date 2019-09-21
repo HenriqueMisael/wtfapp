@@ -86,6 +86,7 @@ export default Object.freeze({
   getCurrentName,
   getCurrentQuestion,
   getStage,
+  getHead,
   getFirst,
   getLearningFood,
 });

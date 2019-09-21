@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { HDivider } from '../../components/Divider';
 import Modal from '../../components/Modal/Default';
@@ -7,26 +7,27 @@ import { CenteredText } from '../../components/Text';
 import { foodCreators, foodSelectors } from 'shared-store';
 import { ButtonsContainer } from './styled-wrappers';
 import { NoBorderButton } from '../../components/buttons';
-import { bindActionCreators } from 'redux';
 
-const Home = ({ question, foodHandleYesOptionAsync, foodHandleNoOptionAsync }) => (
-  <Modal>
-    <CenteredText>{question}</CenteredText>
-    <HDivider />
-    <ButtonsContainer>
-      <NoBorderButton text="Sim" action={foodHandleYesOptionAsync} />
-      <NoBorderButton text="Não" action={foodHandleNoOptionAsync} />
-    </ButtonsContainer>
-  </Modal>
-);
+const Home = () => {
+  const dispatch = useDispatch();
 
-const mapStateToProps = state => ({
-  question: foodSelectors.getCurrentQuestion(state),
-});
+  const question = useSelector(foodSelectors.getCurrentQuestion);
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...foodCreators }, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Home);
+  return (
+    <Modal>
+      <CenteredText>{question}</CenteredText>
+      <HDivider />
+      <ButtonsContainer>
+        <NoBorderButton
+          text="Sim"
+          action={() => dispatch(foodCreators.foodHandleYesOptionAsync())}
+        />
+        <NoBorderButton
+          text="Não"
+          action={() => dispatch(foodCreators.foodHandleNoOptionAsync())}
+        />
+      </ButtonsContainer>
+    </Modal>
+  );
+};
+export default Home;
