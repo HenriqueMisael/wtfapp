@@ -4,9 +4,23 @@ import { Map } from 'immutable';
 import { Creators, Types } from './duck';
 import { foodCreators, foodSelectors } from './index';
 import { Food } from './model';
+import { apiSelectors } from '../api';
+import { fetchOne, learn as apiLearn } from '../api/sagas';
 
-function* handleOption(selector, onEndAction) {
-  const next = yield select(selector);
+function* handleOption(nextIdGetter, selector, onEndAction) {
+  let next = yield select(selector);
+
+  if (!next) {
+    const online = yield select(apiSelectors.isOnline);
+    if (online) {
+      const current = yield select(foodSelectors.getCurrent);
+      const nextID = nextIdGetter(current);
+      if (nextID) {
+        yield fetchOne(nextID);
+        next = yield select(selector);
+      }
+    }
+  }
 
   if (next) {
     yield put(Creators.foodSetCurrent(next));
@@ -17,12 +31,20 @@ function* handleOption(selector, onEndAction) {
 
 function* handleYesOption() {
   yield put(foodCreators.foodSetAnswer(true));
-  yield handleOption(foodSelectors.getCurrentYes, Creators.foodSetSuccess());
+  yield handleOption(
+    current => current.yes,
+    foodSelectors.getCurrentYes,
+    Creators.foodSetSuccess(),
+  );
 }
 
 function* handleNoOption() {
   yield put(foodCreators.foodSetAnswer(false));
-  yield handleOption(foodSelectors.getCurrentNo, Creators.foodSetFail());
+  yield handleOption(
+    current => current.no,
+    foodSelectors.getCurrentNo,
+    Creators.foodSetFail(),
+  );
 }
 
 function* startPlaying() {
@@ -39,19 +61,24 @@ function* learn({ newFoodPeculiarity }) {
     select(foodSelectors.getPrevious),
   ]);
 
-  const newFood = Food(newFoodName);
-  const newPeculiarity = Food(newFoodPeculiarity, current.ID, newFood.ID);
-  if (previousAnswer) previous.yes = newPeculiarity.ID;
-  else previous.no = newPeculiarity.ID;
+  if (yield select(apiSelectors.isOnline)) {
+    yield apiLearn(newFoodName, newFoodPeculiarity, current, previous, previousAnswer);
+  } else {
+    const newFood = Food(newFoodName);
+    const newPeculiarity = Food(newFoodPeculiarity, current.ID, newFood.ID);
+    if (previousAnswer) previous.yes = newPeculiarity.ID;
+    else previous.no = newPeculiarity.ID;
 
-  const foodsChanges = Map([
-    [previous.ID, previous],
-    [current.ID, current],
-    [newPeculiarity.ID, newPeculiarity],
-    [newFood.ID, newFood],
-  ]);
+    const foodsChanges = Map([
+      [previous.ID, previous],
+      [current.ID, current],
+      [newPeculiarity.ID, newPeculiarity],
+      [newFood.ID, newFood],
+    ]);
+    put(Creators.foodAddFoods(foodsChanges));
+  }
 
-  yield all([put(Creators.foodAddFoods(foodsChanges)), put(Creators.foodClear())]);
+  yield put(Creators.foodInit());
 }
 
 export default [
