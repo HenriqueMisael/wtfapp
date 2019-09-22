@@ -12,7 +12,7 @@ export const HDivider = styled.div`
 export const VDivider = styled.div`
   display: flex;
   width: 1px;
-  margin: 8px 1em;
+  margin: 8px;
   background: lightgrey;
   grid-row: 1/-1;
 `;

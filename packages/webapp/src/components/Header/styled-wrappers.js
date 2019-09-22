@@ -22,6 +22,11 @@ export const HeaderText = styled(CenteredText)`
   margin: auto;
 `;
 
+export const EndContainer = styled.div`
+  width: 4em;
+  margin: auto 8px auto auto;
+`;
+
 export const ButtonContainer = styled.div`
-  margin: auto 1em auto auto;
+  margin-right: auto;
 `;
