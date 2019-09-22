@@ -1,15 +1,6 @@
 import axios from 'axios';
 
-const defaultConfig = {
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json',
-    mode: 'cors',
-  },
-};
-
-// const foodApiUrl = 'https://wtfbeck.herokuapp.com/api/food';
-const foodApiUrl = 'http://localhost:8080/api/food';
+const foodApiUrl = 'https://wtfbeck.herokuapp.com/api/food';
 
 function* learn(newFoodName, newFoodPeculiarity, current, previous, previousAnswer) {
   const payload = {
@@ -26,7 +17,7 @@ function* learn(newFoodName, newFoodPeculiarity, current, previous, previousAnsw
 }
 
 function* get(id) {
-  const response = yield axios.get(`${foodApiUrl}/${id}`, defaultConfig);
+  const response = yield axios.get(`${foodApiUrl}/${id}`);
 
   console.log('response', response);
   return response.data;

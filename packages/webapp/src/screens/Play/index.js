@@ -4,29 +4,36 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HDivider } from '../../components/Divider';
 import Modal from '../../components/Modal/Default';
 import { CenteredText } from '../../components/Text';
-import { foodCreators, foodSelectors } from 'shared-store';
+import { apiSelectors, foodCreators, foodSelectors } from 'shared-store';
 import { ButtonsContainer } from './styled-wrappers';
 import { NoBorderButton } from '../../components/buttons';
+import { RingLoader } from '../../components/loader';
 
 const Home = () => {
   const dispatch = useDispatch();
 
   const question = useSelector(foodSelectors.getCurrentQuestion);
+  const fetching = useSelector(apiSelectors.isFetching);
 
   return (
     <Modal>
       <CenteredText>{question}</CenteredText>
       <HDivider />
-      <ButtonsContainer>
-        <NoBorderButton
-          text="Sim"
-          action={() => dispatch(foodCreators.foodHandleYesOptionAsync())}
-        />
-        <NoBorderButton
-          text="Não"
-          action={() => dispatch(foodCreators.foodHandleNoOptionAsync())}
-        />
-      </ButtonsContainer>
+
+      {fetching ? (
+        <RingLoader />
+      ) : (
+        <ButtonsContainer>
+          <NoBorderButton
+            text="Sim"
+            action={() => dispatch(foodCreators.foodHandleYesOptionAsync())}
+          />
+          <NoBorderButton
+            text="Não"
+            action={() => dispatch(foodCreators.foodHandleNoOptionAsync())}
+          />
+        </ButtonsContainer>
+      )}
     </Modal>
   );
 };
