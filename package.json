@@ -1,8 +1,9 @@
 {
-  "name": "yandeh-varejo",
+  "homepage": "https://henriquemisael.github.io/wtfapp/",
+  "name": "wtfapp",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "nelson.prado@objective.com.br",
+  "author": "hernique.nolear@gmail.com",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -22,11 +23,12 @@
     "build:internationalization": "cd packages/internationalization && yarn build",
     "build:shared-store": "cd packages/shared-store && yarn build",
     "build:web": "cd packages/webapp && yarn build",
-    "build": "yarn build:internationalization && yarn build:shared-store",
+    "build:core": "yarn build:internationalization && yarn build:shared-store",
+    "build": "yarn build:core && yarn build:web",
     "watch:internationalization": "cd packages/internationalization && yarn build --watch",
     "watch:shared-store": "cd packages/shared-store && yarn build --watch",
     "watch:core": "concurrently --kill-others \"yarn watch:internationalization\" \"yarn watch:shared-store\"",
-    "bootstrap": "yarn && node_modules/.bin/lerna bootstrap && yarn build"
+    "bootstrap": "yarn && node_modules/.bin/lerna bootstrap && yarn build:core"
   },
   "workspaces": [
     "packages/*"
