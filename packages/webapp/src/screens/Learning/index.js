@@ -3,6 +3,7 @@ import React from 'react';
 import { InputModal } from '../../components/Modal';
 import { useSelector } from 'react-redux';
 import { foodCreators, foodSelectors } from 'shared-store';
+import { translate } from 'internationalization/src';
 
 export default () => {
   const newFoodName = useSelector(foodSelectors.getLearningFood);
@@ -11,8 +12,8 @@ export default () => {
   return (
     <InputModal
       messages={[
-        'Não conheço essa comida. Vou precisar mais um pouco da sua ajuda.',
-        `Pense numa característica de ${newFoodName} que a diferencia de ${currentFoodName}.`,
+        translate('iDontRecognizeThatFood'),
+        translate('thinkInAPeculiarity', { newFoodName, currentFoodName }),
       ]}
       actionCreator={foodCreators.foodFinishLearningAsync}
     />

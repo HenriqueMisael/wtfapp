@@ -1,32 +1,25 @@
 import I18n from 'i18n-js';
-import pt from './pt-BR';
-
-const normalizeTranslate = {
-  en_US: 'en_US',
-  pt_BR: 'pt_BR',
-  en: 'en_US',
-  pt_US: 'pt_BR'
-};
+import ptBR from './pt-BR';
+import enUS from './en-US';
 
 I18n.translations = {
-  pt_BR: pt
+  pt_BR: ptBR,
+  en_US: enUS,
 };
 
 const _defaultLanguage = 'pt_BR';
 
-const setLanguageToI18n = (language = _defaultLanguage) => {
-  const translateNormalize = normalizeTranslate[language];
-  const iHaveThisLanguage = I18n.translations.hasOwnProperty(
-    translateNormalize
-  );
+export const setLanguage = (language = _defaultLanguage) => {
+  const iHaveThisLanguage = I18n.translations.hasOwnProperty(language);
 
-  if (iHaveThisLanguage) I18n.locale = translateNormalize;
+  if (iHaveThisLanguage) I18n.locale = language;
   else I18n.defaultLocale = _defaultLanguage;
 };
 
-setLanguageToI18n();
+export const getCurrent = () => I18n.locale;
 
-export const translate = key => I18n.t(key);
+export const getLanguages = () => Object.getOwnPropertyNames(I18n.translations);
 
-export const toMoney = value =>
-  I18n.toNumber(value, { delimiter: '.', separator: ',', precision: 2 });
+setLanguage();
+
+export const translate = (key, args) => I18n.t(key, args);

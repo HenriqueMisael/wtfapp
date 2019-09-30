@@ -3,7 +3,7 @@ import {
   ButtonContainer,
   Container,
   EndContainer,
-  HeaderText,
+  HeaderText, LanguageContainer,
   Overlay,
 } from './styled-wrappers';
 import { Button } from '../buttons';
@@ -11,6 +11,7 @@ import { RingLoader } from '../loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { VDivider } from '../Divider';
 import { apiCreators, apiSelectors } from 'shared-store/src/api';
+import LanguageSelector from './LanguageSelector';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ const Header = () => {
     <Overlay>
       <Container>
         <HeaderText>What's The Food</HeaderText>
+        <VDivider />
+        <LanguageContainer>
+          <LanguageSelector/>
+        </LanguageContainer>
         <VDivider />
         <EndContainer>
           {fetching ? (

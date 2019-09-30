@@ -1,4 +1,5 @@
 import { createSelector } from '../util/selectors';
+import { translate } from 'internationalization/src';
 
 const getState = globalState => globalState.food;
 
@@ -52,7 +53,7 @@ const getCurrentName = createSelector(
 
 const getCurrentQuestion = createSelector(
   [getCurrentName],
-  name => `A comida que você pensou é ${name}?`,
+  name => translate('theFoodYouThoughtOf', { name }),
 );
 
 const getStage = createSelector(

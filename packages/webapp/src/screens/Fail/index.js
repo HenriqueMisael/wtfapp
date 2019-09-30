@@ -3,14 +3,12 @@ import React from 'react';
 import { foodCreators } from 'shared-store';
 
 import { InputModal } from '../../components/Modal';
+import { translate } from 'internationalization/src';
 
 export default () => {
   return (
     <InputModal
-      messages={[
-        'Ah não! Fiquei sem ideias...',
-        'Me conta aí o que você pensou, fazendo o favor. Na próxima eu acerto!',
-      ]}
+      messages={[translate('iveGotOutOfIdeas'), translate('tellMeWhatYouHaveThought')]}
       actionCreator={foodCreators.foodSetLearning}
     />
   );

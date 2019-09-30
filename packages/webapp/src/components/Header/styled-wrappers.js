@@ -8,7 +8,7 @@ export const Overlay = styled.div`
 `;
 
 export const Container = styled(ElevatedContainer)`
-  width: 50em;
+  max-width: 50em;
   height: 3em;
   margin: auto;
   display: flex;
@@ -19,6 +19,14 @@ export const HeaderText = styled(CenteredText)`
   font-size: 20px;
   font-variant: small-caps;
   letter-spacing: 1em;
+  margin: auto;
+`;
+
+export const LanguageContainer = styled.div`
+display: flex;
+  align-items: center;
+  width: 8em;
+  height: 3em;
   margin: auto;
 `;
 

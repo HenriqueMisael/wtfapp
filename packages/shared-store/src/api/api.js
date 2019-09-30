@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const foodApiUrl = 'https://wtfbeck.herokuapp.com/api/food';
+const foodApiUrl = '/api/food';
 
 function* learn(newFoodName, newFoodPeculiarity, current, previous, previousAnswer) {
   const payload = {
@@ -12,14 +12,12 @@ function* learn(newFoodName, newFoodPeculiarity, current, previous, previousAnsw
   };
 
   const response = yield axios.post(foodApiUrl, payload);
-  console.log('response', response);
   return response.data;
 }
 
 function* get(id) {
   const response = yield axios.get(`${foodApiUrl}/${id}`);
 
-  console.log('response', response);
   return response.data;
 }
 

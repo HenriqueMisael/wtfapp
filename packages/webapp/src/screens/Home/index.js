@@ -8,6 +8,7 @@ import { FailScreen, LearningScreen, PlayScreen, SuccessScreen } from '../index'
 import { Map } from 'immutable';
 import { Food } from 'shared-store/src/food/model';
 import { apiCreators } from 'shared-store/src/api';
+import { translate } from 'internationalization/src';
 
 export default () => {
   const dispatch = useDispatch();
@@ -26,11 +27,8 @@ export default () => {
 
   return (
     <MessageModal
-      messages={[
-        "Bem vindo! Este é um jogo onde a máquina tentará adivinhar um alimento que você escolher antes de iniciar (Agora mesmo!). A máquina fará uma série de perguntas que devem ser respondidas com 'sim' ou 'não', até que a máquina acerte ou não tenha mais perguntas que a auxiliem a conseguir a resposta.",
-        'Caso a máquina não consiga adivinhar, ao final de tudo será pedido para que você diga uma característica que diferencie a sua escolha da última possibilidade, e com base nisso ela será adicionada ao corpo de conhecimento do nosso mecanismo de adivinhação. Quanto mais você jogar, melhor o jogo será em adivinhar!',
-      ]}
-      confirmationText={'Já escolhi minha comida!'}
+      messages={[translate('welcomeMessage.start'), translate('welcomeMessage.learning')]}
+      confirmationText={translate('iveAlreadyChosenMyFood')}
       confirmationAction={() => {
         if (foods.isEmpty()) {
           dispatch(
