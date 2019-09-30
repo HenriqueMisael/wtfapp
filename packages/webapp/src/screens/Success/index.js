@@ -4,14 +4,15 @@ import { useDispatch } from 'react-redux';
 import { foodCreators } from 'shared-store';
 
 import { MessageModal } from '../../components/Modal';
+import { translate } from 'internationalization/src';
 
 export default () => {
   const dispatch = useDispatch();
 
   return (
     <MessageModal
-      messages={['Consegui! HAHAHA! Tente outra vez com uma mais difícil... quem sabe não me ensina alguma coisa!']}
-      confirmationText={'Tentar novamente'}
+      messages={[translate('successMessage')]}
+      confirmationText={translate('tryAgain')}
       confirmationAction={() => dispatch(foodCreators.foodSetStart())}
     />
   );

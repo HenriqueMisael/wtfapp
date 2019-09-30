@@ -8,6 +8,7 @@ import { apiSelectors, foodCreators, foodSelectors } from 'shared-store';
 import { ButtonsContainer } from './styled-wrappers';
 import { NoBorderButton } from '../../components/buttons';
 import { RingLoader } from '../../components/loader';
+import { translate } from 'internationalization/src';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,11 +26,11 @@ const Home = () => {
       ) : (
         <ButtonsContainer>
           <NoBorderButton
-            text="Sim"
+            text={translate('yes')}
             action={() => dispatch(foodCreators.foodHandleYesOptionAsync())}
           />
           <NoBorderButton
-            text="Não"
+            text={translate('no')}
             action={() => dispatch(foodCreators.foodHandleNoOptionAsync())}
           />
         </ButtonsContainer>

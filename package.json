@@ -28,7 +28,12 @@
     "watch:internationalization": "cd packages/internationalization && yarn build --watch",
     "watch:shared-store": "cd packages/shared-store && yarn build --watch",
     "watch:core": "concurrently --kill-others \"yarn watch:internationalization\" \"yarn watch:shared-store\"",
-    "bootstrap": "yarn && node_modules/.bin/lerna bootstrap && yarn build:core"
+    "install:shared-store": "cd packages/shared-store && yarn install",
+    "install:internationalization": "cd packages/internationalization && yarn install",
+    "install:core": "yarn install:shared-store && yarn install:internationalization",
+    "install:web": "cd packages/webapp && yarn install",
+    "install:all": "yarn install:core && yarn install:web",
+    "bootstrap": "yarn && yarn install:all && node_modules/.bin/lerna bootstrap && yarn build:core"
   },
   "workspaces": [
     "packages/*"
