@@ -9,8 +9,8 @@ function* setOnline() {
     yield fetchOne(yield select(foodSelectors.getHead));
     yield put(Creators.apiSetOnline(true));
   } catch (e) {
-    if(e.message === 'Network Error') {
-      yield put(Creators.apiSetLastError('COULD_NOT_REACH'))
+    if (e.message === 'Network Error') {
+      yield put(Creators.apiSetLastError('COULD_NOT_REACH'));
     } else {
       console.log('err', e);
     }
@@ -29,6 +29,7 @@ export function* learn(
 ) {
   yield put(Creators.apiSetFetching(true));
   yield api.learn(newFoodName, newFoodPeculiarity, current, previous, previousAnswer);
+  yield fetchMany([current.id, previous.id]);
   yield put(Creators.apiSetFetching(false));
 }
 
@@ -37,6 +38,11 @@ export function* fetchOne(id) {
   const food = yield api.get(id);
   yield put(foodCreators.foodAdd(food));
   yield put(Creators.apiSetFetching(false));
+}
+
+export function* fetchMany(ids) {
+  const foods = yield all(ids.map(id => api.get(id)));
+  yield put(foodCreators.foodAddFoods(foods));
 }
 
 export default [
