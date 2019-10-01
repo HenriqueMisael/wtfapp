@@ -1,14 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
-import { getLanguages, setLanguage, translate } from 'internationalization/src';
+import React, { useCallback, useMemo, useState } from 'react';
+import { getCurrent, getLanguages, setLanguage, translate } from 'internationalization/src';
 
 import { HoveringActiveDropdown } from '../../drop-down';
-import { useDispatch, useSelector } from 'react-redux';
-import { internationalizationCreators, internationalizationSelectors } from 'shared-store';
 import { withRouter } from 'react-router';
 
 const LanguageSelector = ({history, location}) => {
-  const selected = useSelector(internationalizationSelectors.getLangKey);
-  const dispatch = useDispatch();
+  const [selected, select] = useState(getCurrent());
 
   const options = useMemo(
     () =>
@@ -23,7 +20,7 @@ const LanguageSelector = ({history, location}) => {
   const handleSelect = useCallback(
     langKey => {
       setLanguage(langKey);
-      dispatch(internationalizationCreators.setLanguage(langKey));
+      select(langKey);
       history.push(location.path)
     },
     [dispatch, history, location],
