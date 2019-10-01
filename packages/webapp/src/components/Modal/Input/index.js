@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { CustomFooterMessageModal } from '../../Modal';
 import { InputText } from '../../inputs';
 import { CentralizedContainer } from '../../containers';
 import { NextButton } from '../../buttons';
 
-export default ({ messages, actionCreator }) => {
-  const dispatch = useDispatch();
+const InputModal = ({ messages, action }) => {
   const [inputValue, setInputValue] = useState('');
 
-  let confirm = () => dispatch(actionCreator(inputValue));
+  let confirm = () => action(inputValue);
   return (
     <CustomFooterMessageModal messages={messages}>
       <CentralizedContainer>
@@ -26,3 +24,5 @@ export default ({ messages, actionCreator }) => {
     </CustomFooterMessageModal>
   );
 };
+
+export default InputModal;
