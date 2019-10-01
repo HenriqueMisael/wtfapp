@@ -6,14 +6,17 @@ import { foodCreators } from 'shared-store';
 import { MessageModal } from '../../components/Modal';
 import { translate } from 'internationalization/src';
 
-export default () => {
+export default ({history}) => {
   const dispatch = useDispatch();
 
   return (
     <MessageModal
       messages={[translate('successMessage')]}
       confirmationText={translate('tryAgain')}
-      confirmationAction={() => dispatch(foodCreators.foodSetStart())}
+      confirmationAction={() => {
+        dispatch(foodCreators.foodStartPlaying());
+        history.push(`/`);
+      }}
     />
   );
 };

@@ -1,10 +1,5 @@
-import React, { useCallback, useState, useMemo } from 'react';
-import {
-  getCurrent,
-  getLanguages,
-  setLanguage,
-  translate,
-} from 'internationalization/src';
+import React, { useCallback, useMemo } from 'react';
+import { getLanguages, setLanguage, translate } from 'internationalization/src';
 
 import { HoveringActiveDropdown } from '../../drop-down';
 import { useDispatch, useSelector } from 'react-redux';

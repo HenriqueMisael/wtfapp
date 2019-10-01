@@ -1,11 +1,14 @@
 import React from 'react';
 
 import { InputModal } from '../../components/Modal';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { foodCreators, foodSelectors } from 'shared-store';
 import { translate } from 'internationalization/src';
 
-export default () => {
+export default ({history}) => {
+
+  const dispatch = useDispatch();
+
   const newFoodName = useSelector(foodSelectors.getLearningFood);
   const currentFoodName = useSelector(foodSelectors.getCurrentName);
 
@@ -15,7 +18,10 @@ export default () => {
         translate('iDontRecognizeThatFood'),
         translate('thinkInAPeculiarity', { newFoodName, currentFoodName }),
       ]}
-      actionCreator={foodCreators.foodFinishLearningAsync}
+      action={inputValue => {
+        dispatch(foodCreators.foodFinishLearningAsync(inputValue));
+        history.push(`/`);
+      }}
     />
   );
 };

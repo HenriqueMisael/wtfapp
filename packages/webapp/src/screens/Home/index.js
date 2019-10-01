@@ -1,29 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { foodCreators, foodSelectors, Stages } from 'shared-store';
+import { foodCreators, foodSelectors } from 'shared-store';
 
 import { MessageModal } from '../../components/Modal';
-import { FailScreen, LearningScreen, PlayScreen, SuccessScreen } from '../index';
 import { Map } from 'immutable';
 import { Food } from 'shared-store/src/food/model';
 import { apiCreators } from 'shared-store/src/api';
 import { translate } from 'internationalization/src';
+import { withRouter } from 'react-router';
 
-export default () => {
+const Home = ({history}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(apiCreators.apiSetOnlineAsync());
   }, [dispatch]);
 
-  const stage = useSelector(foodSelectors.getStage);
   const foods = useSelector(foodSelectors.getAll);
-
-  if (stage === Stages.PLAY) return <PlayScreen />;
-  if (stage === Stages.SUCCESS) return <SuccessScreen />;
-  if (stage === Stages.FAIL) return <FailScreen />;
-  if (stage === Stages.LEARNING) return <LearningScreen />;
 
   return (
     <MessageModal
@@ -38,7 +32,10 @@ export default () => {
           );
         }
         dispatch(foodCreators.foodStartPlaying());
+        history.push(`/play`);
       }}
     />
   );
 };
+
+export default withRouter(Home);

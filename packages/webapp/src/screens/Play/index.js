@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { HDivider } from '../../components/Divider';
 import Modal from '../../components/Modal/Default';
 import { CenteredText } from '../../components/Text';
-import { apiSelectors, foodCreators, foodSelectors } from 'shared-store';
+import { apiSelectors, foodCreators, foodSelectors, Stages } from 'shared-store';
 import { ButtonsContainer } from './styled-wrappers';
 import { NoBorderButton } from '../../components/buttons';
 import { RingLoader } from '../../components/loader';
 import { translate } from 'internationalization/src';
 
-const Home = () => {
+const Home = ({ history }) => {
+  const stage = useSelector(foodSelectors.getStage);
+
+  useEffect(() => {
+    if (stage === Stages.SUCCESS) history.push(`/success`);
+    else if (stage === Stages.FAIL) history.push(`/fail`);
+  }, [stage, history]);
+
   const dispatch = useDispatch();
 
   const question = useSelector(foodSelectors.getCurrentQuestion);
