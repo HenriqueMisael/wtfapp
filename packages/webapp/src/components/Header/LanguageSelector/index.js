@@ -4,8 +4,9 @@ import { getLanguages, setLanguage, translate } from 'internationalization/src';
 import { HoveringActiveDropdown } from '../../drop-down';
 import { useDispatch, useSelector } from 'react-redux';
 import { internationalizationCreators, internationalizationSelectors } from 'shared-store';
+import { withRouter } from 'react-router';
 
-const LanguageSelector = () => {
+const LanguageSelector = ({history, location}) => {
   const selected = useSelector(internationalizationSelectors.getLangKey);
   const dispatch = useDispatch();
 
@@ -23,11 +24,12 @@ const LanguageSelector = () => {
     langKey => {
       setLanguage(langKey);
       dispatch(internationalizationCreators.setLanguage(langKey));
+      history.push(location.path)
     },
-    [dispatch],
+    [dispatch, history, location],
   );
 
   return <HoveringActiveDropdown options={options} onSelect={handleSelect} />;
 };
 
-export default LanguageSelector;
+export default withRouter(LanguageSelector);
