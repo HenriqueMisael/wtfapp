@@ -7,6 +7,7 @@ cache:
 
 before_deploy:
   - "yarn clean"
+  - "yarn build:core"
   - "yarn bootstrap"
   - "yarn build:web"
 
@@ -17,6 +18,3 @@ deploy:
   local_dir: packages/webapp/build
   on:
     branch: master
-
-script:
-  - bash ./deploy.sh
