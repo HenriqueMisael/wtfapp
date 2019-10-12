@@ -2,6 +2,7 @@ export default {
   language: {
     pt_BR: 'Portuguese',
     en_US: 'English',
+    fr_FR: 'French',
   },
   welcomeMessage: {
     start:

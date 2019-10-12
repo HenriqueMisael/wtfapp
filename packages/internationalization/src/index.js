@@ -1,10 +1,12 @@
 import I18n from 'i18n-js';
 import ptBR from './pt-BR';
 import enUS from './en-US';
+import frFR from './fr-FR';
 
 I18n.translations = {
   pt_BR: ptBR,
   en_US: enUS,
+  fr_FR: frFR,
 };
 
 const _defaultLanguage = 'pt_BR';
