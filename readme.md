@@ -1,0 +1,2 @@
+[![Build Status](https://travis-ci.org/HenriqueMisael/wtfapp.svg?branch=master)](https://travis-ci.org/HenriqueMisael/wtfapp)	[![Netlify Status](https://api.netlify.com/api/v1/badges/d2ecac5d-569e-4c7e-b4ef-0ea077304269/deploy-status)](https://app.netlify.com/sites/wtfapp/deploys)
+**WTF App** is a personal project for training ReactJS skills in a kind of game that will try to guess wich food the player is thinking about. You can try it [here](https://wtfapp.netlify.com/).
